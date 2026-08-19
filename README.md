@@ -1,3 +1,3 @@
 # iris
 
-ai native note taking app :)
+ai native note taking app :D
