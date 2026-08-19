@@ -1,0 +1,11 @@
+{
+  "name": "iris",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-native note-taking app",
+  "packageManager": "pnpm@10.30.1",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  }
+}
