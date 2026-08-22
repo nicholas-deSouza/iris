@@ -1,0 +1,64 @@
+---
+description: Guidelines for creating and editing Cursor rules in this repo
+alwaysApply: false
+---
+
+# Guidelines for Rule Creation
+
+Read and follow this file whenever the user asks to create, edit, rename, or reorganize Cursor rules.
+
+## Naming Convention
+
+- Format: `NNN-kebab-case-topic.mdc` (e.g. `002-frontend-components.mdc`)
+- Use the next available three-digit prefix; never reuse numbers
+- `000` is reserved for this file
+
+## What Belongs Where
+
+| Content | Location |
+|---------|----------|
+| Shared project truth | `AGENTS.md` or domain `frontend/AGENTS.md` / `backend/AGENTS.md` |
+| Tool-specific scoping only | `.mdc` body after the `@import` |
+| Personal preferences | Cursor user rules or `CLAUDE.local.md` |
+| Repeatable workflows | Skills, not rules |
+
+## Required Frontmatter
+
+```yaml
+---
+description: Brief description of what this rule does
+alwaysApply: true   # OR globs: <pattern>
+---
+```
+
+- Include `description`
+- Use `alwaysApply: true` for universal rules, or `globs: <pattern>` for file-scoped rules
+- Do not set both unless a scoped rule explicitly needs `alwaysApply: false`
+
+## Import Pattern
+
+Prefer importing canonical docs instead of duplicating content:
+
+- Root: `@../../AGENTS.md`
+- Domain: `@../../frontend/AGENTS.md` or `@../../backend/AGENTS.md`
+
+Put only Cursor-specific notes in the rule body after the import.
+
+## Before Creating
+
+1. Confirm purpose and scope (always apply vs file-specific)
+2. If file-specific, confirm glob patterns (e.g. `frontend/**/*.tsx`)
+3. One concern per rule; target under 50 lines of body content
+
+## After Creating
+
+1. Add a one-line entry to the **Cursor Rules** section in `AGENTS.md` (number, name, scope)
+2. Update domain `AGENTS.md` if the rule reflects an architectural decision
+
+## Checklist
+
+- [ ] File is `.mdc` in `.cursor/rules/`
+- [ ] Correct three-digit prefix assigned
+- [ ] Frontmatter valid (`description` + scope)
+- [ ] No duplicated AGENTS content
+- [ ] `AGENTS.md` Cursor Rules section updated

@@ -5,3 +5,7 @@ build
 .env
 .env.*
 !.env.example
+notes.txt
+
+# Claude Code personal preferences
+CLAUDE.local.md
