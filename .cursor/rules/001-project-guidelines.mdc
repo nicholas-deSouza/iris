@@ -11,6 +11,4 @@ This rule applies to all files in the project.
 
 ---
 
-**Future domain rules** (create during scaffolding):
-- `002-frontend.mdc` — `globs: frontend/**/*`, import `../../frontend/AGENTS.md`
-- `003-backend.mdc` — `globs: backend/**/*`, import `../../backend/AGENTS.md`
+**Reserved domain rule**: `003-backend.mdc` — `globs: backend/**/*`, import `../../backend/AGENTS.md` (create during backend scaffolding)

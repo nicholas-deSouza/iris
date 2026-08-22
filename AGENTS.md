@@ -15,33 +15,37 @@ Iris is an AI-native note-taking app designed for seamless AI integration.
 
 ## Architecture
 
-Single app layout (not a monorepo). Currently no code exists.
+Single app layout (not a monorepo).
 
-**Planned structure** (create during scaffolding):
-
-- `frontend/` — React application
-  - When created: add `frontend/AGENTS.md` and `frontend/CLAUDE.md`
+- `frontend/` — React + Vite application (scaffolded)
+  - Domain docs: `frontend/AGENTS.md`, `frontend/CLAUDE.md`
   - Communication with backend via REST API (details TBD)
-- `backend/` — FastAPI service
-  - When created: add `backend/AGENTS.md` and `backend/CLAUDE.md`
-  - API routes, business logic, data access
+- `backend/` — FastAPI service (not yet created)
 
 ## Build & Test
 
-**Not yet configured.** No build tooling installed.
+**Frontend** (from `frontend/`):
 
-**Current**:
+- `pnpm dev` — Vite dev server
+- `pnpm build` — typecheck and production build
+- `pnpm preview` — preview production build
 
-- Use `pnpm` (not npm/yarn) for all frontend package operations
+**Lint & format** (from repo root):
 
-**Once scaffolding is complete**, update with:
+- `pnpm lint` / `pnpm lint:fix` — ESLint on `frontend/`
+- `pnpm format` / `pnpm format:check` — Prettier on `frontend/`
 
-- Frontend: `pnpm dev`, `pnpm build`, `pnpm lint`, `pnpm test`
-- Backend: `uvicorn app.main:app --reload`, `pytest`, `ruff check`
+Pre-commit hook (Husky + lint-staged) auto-fixes ESLint and Prettier on staged `frontend/**/*.{ts,tsx}` files.
+
+**Backend** (not yet configured):
+
+- `uvicorn app.main:app --reload`, `pytest`, `ruff check`
+
+Use `pnpm` (not npm/yarn) for all frontend package operations.
 
 ## Code Standards
 
-_To be defined based on linter configs once scaffolding is complete._
+**Frontend**: ESLint (flat config at `eslint.config.mjs`) + Prettier (`.prettierrc`) at repo root, targeting `frontend/**/*.{ts,tsx}`. Configs use recommended TypeScript and React Hooks rules; Prettier handles formatting.
 
 General expectations:
 
@@ -79,8 +83,9 @@ Minimum expectations:
 Rules live in `.cursor/rules/` using `NNN-kebab-case` filenames.
 
 - **001-project-guidelines** — always applies; imports this file
+- **002-frontend** — `frontend/**/*`; imports `frontend/AGENTS.md`
 - **000-guidelines-for-rule-creation** — read when creating or editing rules (see that file for full procedure)
 
-Reserved for scaffolding: `002-frontend`, `003-backend`.
+Reserved for scaffolding: `003-backend`.
 
 **Maintenance**: Edit AGENTS.md for shared project truth; edit `.mdc` files only for Cursor-specific scoping.

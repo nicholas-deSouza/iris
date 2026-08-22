@@ -1,0 +1,10 @@
+---
+description: Frontend conventions from frontend/AGENTS.md
+globs: frontend/**/*
+---
+
+@../../frontend/AGENTS.md
+
+## Cursor-specific
+
+This rule applies when editing files under `frontend/`.
