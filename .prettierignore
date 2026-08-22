@@ -1,0 +1,7 @@
+node_modules
+dist
+build
+pnpm-lock.yaml
+frontend/pnpm-lock.yaml
+*.min.js
+coverage

@@ -7,5 +7,30 @@
   "engines": {
     "node": ">=22",
     "pnpm": ">=10"
+  },
+  "scripts": {
+    "lint": "eslint frontend",
+    "lint:fix": "eslint frontend --fix",
+    "format": "prettier --write frontend",
+    "format:check": "prettier --check frontend",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "frontend/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.9.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "prettier": "^3.9.6",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0"
   }
 }
