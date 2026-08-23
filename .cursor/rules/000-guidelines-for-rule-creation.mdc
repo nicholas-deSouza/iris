@@ -19,7 +19,7 @@ Read and follow this file whenever the user asks to create, edit, rename, or reo
 |---------|----------|
 | Shared project truth | `AGENTS.md` or domain `frontend/AGENTS.md` / `backend/AGENTS.md` |
 | Tool-specific scoping only | `.mdc` body after the `@import` |
-| Personal preferences | Cursor user rules or `CLAUDE.local.md` |
+| Personal preferences | Cursor user rules or `AGENTS.local.md` |
 | Repeatable workflows | Skills, not rules |
 
 ## Required Frontmatter

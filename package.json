@@ -13,6 +13,7 @@
     "lint:fix": "eslint frontend --fix",
     "format": "prettier --write frontend",
     "format:check": "prettier --check frontend",
+    "test": "pnpm --dir frontend test",
     "prepare": "husky"
   },
   "lint-staged": {
