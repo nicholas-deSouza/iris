@@ -4,6 +4,7 @@ alwaysApply: true
 ---
 
 @../../AGENTS.md
+@../../AGENTS.local.md
 
 ## Cursor-specific
 

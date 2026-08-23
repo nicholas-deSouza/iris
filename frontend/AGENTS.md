@@ -6,7 +6,8 @@ Frontend conventions for the Iris React application.
 
 - **Vite** — dev server and production build
 - **React 19** — UI components
-- **TypeScript** — type-safe application code
+- **TypeScript** — type-safe application code (`strict` enabled)
+- **Vitest** — unit tests, configured in `vite.config.ts`
 
 ## Layout
 
@@ -25,6 +26,9 @@ Run from `frontend/`:
 - `pnpm dev` — start Vite dev server
 - `pnpm build` — typecheck and production build
 - `pnpm preview` — preview production build locally
+- `pnpm test` — run Vitest once
+- `pnpm test:watch` — Vitest in watch mode
+- `pnpm test:coverage` — run with V8 coverage
 
 Lint and format run from the **repo root** (`pnpm lint`, `pnpm format`).
 

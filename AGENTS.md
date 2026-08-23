@@ -6,10 +6,16 @@ Single source of truth for project-wide agent instructions. This file says what 
 
 Iris is an AI-native note-taking app designed for seamless AI integration.
 
+Personal, machine-local agent preferences may be kept in `AGENTS.local.md`. This
+file is intentionally gitignored and should contain coaching preferences, not
+shared project conventions.
+
 ## Stack
 
 - **Frontend**: TypeScript + React — Modern reactive UI with type safety
+- **Editor**: BlockNote — Notion-style nested block editing (frontend-owned; backend keeps its own independent schema, see ADR 0002)
 - **Backend**: Python + FastAPI — High-performance async API framework
+- **Storage**: SQLite — single-user v1, no offline/external-editing support (see ADR 0002)
 - **Package Manager**: pnpm (>=10) — Fast, disk-efficient package management (specified in package.json)
 - **Node**: >=22 — Required runtime version
 
@@ -22,6 +28,8 @@ Single app layout (not a monorepo).
   - Communication with backend via REST API (details TBD)
 - `backend/` — FastAPI service (not yet created)
 
+Core data model and storage decisions are documented in [`docs/adr/0001-block-storage-and-reconciliation.md`](docs/adr/0001-block-storage-and-reconciliation.md) (JSON blocks, agent JSON access — decisions #2 and #9 still in effect) and [`docs/adr/0002-lean-v1-scope-and-stack-choices.md`](docs/adr/0002-lean-v1-scope-and-stack-choices.md) (SQLite storage, BlockNote editor, single-user v1, one-way markdown export — supersedes ADR 0001's offline/reconciliation scope).
+
 ## Build & Test
 
 **Frontend** (from `frontend/`):
@@ -29,6 +37,11 @@ Single app layout (not a monorepo).
 - `pnpm dev` — Vite dev server
 - `pnpm build` — typecheck and production build
 - `pnpm preview` — preview production build
+- `pnpm test` — run Vitest once
+- `pnpm test:watch` — Vitest in watch mode
+- `pnpm test:coverage` — run with V8 coverage
+
+`pnpm test` also works from the repo root (delegates to `frontend/`).
 
 **Lint & format** (from repo root):
 
@@ -55,13 +68,21 @@ General expectations:
 
 ## Testing Requirements
 
-_To be defined during scaffolding._
+**Frontend**: Vitest (config lives in `frontend/vite.config.ts` under `test`). Test globals are
+disabled — import `describe`/`it`/`expect` from `vitest` explicitly. Colocate tests next to the code
+they cover as `*.test.ts` / `*.test.tsx`.
+
+**Backend**: pytest (not yet configured).
 
 Minimum expectations:
 
 - Unit tests for business logic
 - Integration tests for API endpoints
 - Test coverage for critical user flows
+
+Block-tree operations (create/insert/move/delete) must assert store invariants after every
+operation — see [`docs/adr/0001-block-storage-and-reconciliation.md`](docs/adr/0001-block-storage-and-reconciliation.md)
+Consequences, which requires multi-location writes to stay consistent.
 
 ## Security & Boundaries
 
