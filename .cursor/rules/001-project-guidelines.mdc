@@ -9,7 +9,3 @@ alwaysApply: true
 ## Cursor-specific
 
 This rule applies to all files in the project.
-
----
-
-**Reserved domain rule**: `003-backend.mdc` — `globs: backend/**/*`, import `../../backend/AGENTS.md` (create during backend scaffolding)

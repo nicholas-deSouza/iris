@@ -7,5 +7,16 @@ build
 !.env.example
 notes.txt
 
+# Python / backend
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+*.db
+
 # Personal agent preferences
 AGENTS.local.md
+
+# Personal working backlog
+BACKLOG.md

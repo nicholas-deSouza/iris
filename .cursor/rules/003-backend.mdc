@@ -1,0 +1,10 @@
+---
+description: Backend conventions from backend/AGENTS.md
+globs: backend/**/*
+---
+
+@../../backend/AGENTS.md
+
+## Cursor-specific
+
+This rule applies when editing files under `backend/`.

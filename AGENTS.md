@@ -26,9 +26,10 @@ Single app layout (not a monorepo).
 - `frontend/` — React + Vite application (scaffolded)
   - Domain docs: `frontend/AGENTS.md`, `frontend/CLAUDE.md`
   - Communication with backend via REST API (details TBD)
-- `backend/` — FastAPI service (not yet created)
+- `backend/` — FastAPI service (scaffolded)
+  - Domain docs: `backend/AGENTS.md`, `backend/CLAUDE.md`
 
-Core data model and storage decisions are documented in [`docs/adr/0001-block-storage-and-reconciliation.md`](docs/adr/0001-block-storage-and-reconciliation.md) (JSON blocks, agent JSON access — decisions #2 and #9 still in effect) and [`docs/adr/0002-lean-v1-scope-and-stack-choices.md`](docs/adr/0002-lean-v1-scope-and-stack-choices.md) (SQLite storage, BlockNote editor, single-user v1, one-way markdown export — supersedes ADR 0001's offline/reconciliation scope).
+Core data model and storage decisions are documented in [`docs/adr/0001-block-storage-and-reconciliation.md`](docs/adr/0001-block-storage-and-reconciliation.md) (JSON blocks, agent JSON access — decisions #2 and #9 still in effect), [`docs/adr/0002-lean-v1-scope-and-stack-choices.md`](docs/adr/0002-lean-v1-scope-and-stack-choices.md) (SQLite storage, BlockNote editor, single-user v1, one-way markdown export — supersedes ADR 0001's offline/reconciliation scope), and [`docs/adr/0003-agent-architecture.md`](docs/adr/0003-agent-architecture.md) (LangGraph tool-calling agent, single-note block CRUD tools, raw-JSON context, synchronous v1 response delivery).
 
 ## Build & Test
 
@@ -50,11 +51,14 @@ Core data model and storage decisions are documented in [`docs/adr/0001-block-st
 
 Pre-commit hook (Husky + lint-staged) auto-fixes ESLint and Prettier on staged `frontend/**/*.{ts,tsx}` files.
 
-**Backend** (not yet configured):
+**Backend** (from `backend/`, via `uv`):
 
-- `uvicorn app.main:app --reload`, `pytest`, `ruff check`
+- `uv run uvicorn app.main:app --reload` — dev server
+- `uv run pytest` — run tests
+- `uv run ruff check` — lint
 
-Use `pnpm` (not npm/yarn) for all frontend package operations.
+Use `pnpm` (not npm/yarn) for all frontend package operations, and `uv` (not pip/poetry) for all
+backend package operations.
 
 ## Code Standards
 
@@ -72,7 +76,7 @@ General expectations:
 disabled — import `describe`/`it`/`expect` from `vitest` explicitly. Colocate tests next to the code
 they cover as `*.test.ts` / `*.test.tsx`.
 
-**Backend**: pytest (not yet configured).
+**Backend**: pytest (config in `backend/pyproject.toml`).
 
 Minimum expectations:
 
@@ -105,8 +109,7 @@ Rules live in `.cursor/rules/` using `NNN-kebab-case` filenames.
 
 - **001-project-guidelines** — always applies; imports this file
 - **002-frontend** — `frontend/**/*`; imports `frontend/AGENTS.md`
+- **003-backend** — `backend/**/*`; imports `backend/AGENTS.md`
 - **000-guidelines-for-rule-creation** — read when creating or editing rules (see that file for full procedure)
-
-Reserved for scaffolding: `003-backend`.
 
 **Maintenance**: Edit AGENTS.md for shared project truth; edit `.mdc` files only for Cursor-specific scoping.
