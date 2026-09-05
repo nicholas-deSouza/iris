@@ -14,7 +14,6 @@ async def test_note_defaults() -> None:
         note = Note(title="test")
         session.add(note)
         await session.commit()
-        breakpoint()
 
         assert note.id is not None
         assert note.created_at is not None
